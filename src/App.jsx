@@ -1,10 +1,11 @@
 import './index.css'
-
+import CardSearch from './components/CardSearch'
 function App() {
 
 
   return (
-      <div>
+      <div className="justify-center">
+        <CardSearch />
       </div>
   )
 }
