@@ -1,4 +1,6 @@
 import { useState  } from "react";
+import Card from "./Card"
+import fetchCard from "../api/mtgApi";
 
 
 const CardSearch = () => {
@@ -7,32 +9,23 @@ const CardSearch = () => {
     const [card, setCard] = useState(null);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
-
-    const fetchCard = async () => {
-        if (!query.trim()) return; //simple prevent search without input - TODO: add error messaging
-
-        setLoading(true);
+    
+    const handleSearch = async () => {
         setError("");
-        setCard(null);
+        setLoading(true);
 
-        try {
-            const response = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${query}`); //this only works on single result searches otherwise it will be 404
-            if (!response.ok) throw new Error("Card not found");
-
-
-            const data = await response.json();
-            setCard(data);
+        try { 
+            const result = await fetchCard(query);
+            setCard(result);
         } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
+            setError("Card not found");
         }
+        setLoading(false);
     }
 
     const handleKeyDown = (event) => {
         if(event.key === "Enter") {
-            fetchCard();
+            handleSearch();
         }
     }
 
@@ -48,15 +41,14 @@ const CardSearch = () => {
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <button className="bg-orange-500 p-2 ml-3 rounded-md"onClick={fetchCard}>Search</button>
+                <button className="bg-orange-500 p-2 ml-3 rounded-md"onClick={handleSearch}>Search</button>
             </div>
             {loading && <p>Loading...</p>}
             {error && <p className="test-red-500">{error}</p>}
 
             {card && (
                 <div>
-                    <h1>{card.name}</h1>
-                    <img src={card.image_uris.normal} alt={card.name}/>
+                    <Card card={card}/>
                 </div>
             )}
         </div>

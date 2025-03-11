@@ -1,0 +1,11 @@
+1: Deck storage
+
+
+
+
+2: Search Functionality
+
+
+
+
+3: Potentially importing/exporting decks in MTG format or something like that
