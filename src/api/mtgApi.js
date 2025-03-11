@@ -1,17 +1,18 @@
-const fetchCard = async (query) => {
-    if (!query.trim()) return; //simple prevent search without input - TODO: add error messaging
+const fetchCards = async (query) => {
+    if (!query.trim()) return [];
 
 
     try {
-        const response = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${query}`); //this only works on single result searches otherwise it will be 404
+        const response = await fetch(`https://api.scryfall.com/cards/search?q=${query}`); 
         if (!response.ok) throw new Error("Card not found");
 
 
-        return await response.json();
-
+        const data = await response.json();
+        return data.data;
+                
     } catch (error) {
         console.error("API Error:", error)
         throw error;
     }
 }
-export default fetchCard;
+export default fetchCards;

@@ -1,10 +1,15 @@
 1: Deck storage
-
-
+    Be able to create a deck
+    Enable User to add cards to decks
+    
 
 
 2: Search Functionality
+    to create a search function that returns a list of matching cards
 
+    Colour/Rarity Filtering
+
+    Potentially type Filtering
 
 
 
