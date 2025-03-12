@@ -2,6 +2,7 @@
     Be able to create a deck
     Enable User to add cards to decks
     
+    When a use is searching for a cards, a modal? some sort of inverse accordian maybe? from below - you're able to click, it raises and shows current cards in your deck
 
 
 2: Search Functionality
