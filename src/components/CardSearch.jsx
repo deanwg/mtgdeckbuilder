@@ -47,7 +47,7 @@ const CardSearch = () => {
             {error && <p className="test-red-500">{error}</p>}
 
             {cards && (
-                <div className="grid grid-cols-4 gap-4 justify-between w-2/3">
+                <div className="grid grid-cols-4 gap-4 justify-between mx-24">
                     {cards.map((card) => (
                         <Card key={card.id} card={card} />
                     ))}
