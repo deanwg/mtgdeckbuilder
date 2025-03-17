@@ -1,15 +1,17 @@
 import { useState } from "react";
 import  { Add, Remove } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import Toast from "./toast";
 
 const Card = ({card}) => {
 
     const [count, setCount] = useState(1);
+    const [errMsg, setErrMsg] = useState('');
 
     const increaseCount = () => {
         if (count < 4) {
             setCount(count+1);
-        }
+        } else setErrMsg("You can't have more than 4 cards in a standard deck");
     }
 
     const decreaseCount = () => {
@@ -27,6 +29,7 @@ const Card = ({card}) => {
                     className="object-cover m-2 rounded-l-lg"
                 />
             </div>
+
             <div className="flex flex-col justify-between ml-2 p-2 w-2/5">
                 <div>
                     <h2 className="text-lg font-bold truncate">{card.name}</h2>
@@ -34,8 +37,11 @@ const Card = ({card}) => {
                         {card.type_line.split(" — ")[0]}
                     </p>
                 </div>
-                <div className="flex flex-col items-center space-y-2">
-                    <div className="flex items-center space-x-1">
+                {errMsg.length && (
+                  <Toast msg={errMsg} />
+                )}
+                <div className="flex flex-col items-center">
+                    <div className="flex items-center">
                         <IconButton onClick={() => decreaseCount()}>
                             <Remove />
                         </IconButton>
@@ -43,7 +49,7 @@ const Card = ({card}) => {
                             type="text"
                             placeholder={count}
                             readOnly
-                            className="w-8 border border-slate-800 text-center rounded"
+                            className="w-8 border border-slate-800 text-center rounded hover:cursor-default"
                         />
                         <IconButton onClick={() => increaseCount()}>
                             <Add />

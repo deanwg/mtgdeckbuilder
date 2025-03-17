@@ -1,13 +1,10 @@
 import './index.css';
-import CardSearch from './components/CardSearch';
-import NavBar from './components/NavBar';
-
+import SearchPage from './components/SearchPage';
 
 function App() {
   return (
       <div className="justify-center">
-        <NavBar />
-        <CardSearch />
+        <SearchPage />
       </div>
   )
 }
