@@ -4,7 +4,7 @@ import Logo from '../Logo.png';
 
 
 
-const NavBar = ({query, setQuery, handleSearch, handleKeyDown}) => {
+const NavBar = ({setError, query, setQuery, handleSearch, handleKeyDown}) => {
 
     return (
         <div className="flex flex-row justify-between bg-slate-300 w-full">
@@ -17,14 +17,14 @@ const NavBar = ({query, setQuery, handleSearch, handleKeyDown}) => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    onBlur={() => setError("")}
+                    onFocus={() => setError("")}
                 />
             <button className="bg-orange-500 p-2 ml-3 rounded-md"onClick={handleSearch}>Search</button>
             </div> 
 
             <div className="flex flex-row items-center">
-                <button className="border border-black bg-slate-500 rounded-md p-1 ml-2">Seach Syntax</button>
-                <button className="border border-black bg-slate-500 rounded-md p-1 ml-2">Deck Editor</button>
+                <button className="bg-orange-500 p-2 rounded-md">Seach Syntax</button>
+                <button className="bg-orange-500 p-2 ml-3 rounded-md mr-2">Deck Editor</button>
             </div>
         </div>
     )

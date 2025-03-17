@@ -34,6 +34,7 @@ const SearchPage = () => {
         <NavBar
         query={query}
         setQuery={setQuery}
+        setError={setError}
         handleSearch={handleSearch}
         handleKeyDown={handleKeyDown}
         />
