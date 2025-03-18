@@ -2,6 +2,7 @@ import NavBar from "./NavBar"
 import { useState  } from "react";
 import Card from "./Card"
 import fetchCards from "../api/mtgApi";
+import Toast from "./toast";
 
 
 const SearchPage = () => {
@@ -9,7 +10,8 @@ const SearchPage = () => {
     const [cards, setCards] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    
+    const [toast , setToast] = useState({message: "", toastStyle: "info"});
+
     const handleSearch = async () => {
         setError("");
         setLoading(true);
@@ -29,6 +31,14 @@ const SearchPage = () => {
         }
     }
 
+    const handleCardError = (message, toastStyle) => {
+        setToast(message, toastStyle);
+      };
+    
+      const clearToast = () => {
+        setToast({message: "", toastStyle: ""});
+      };
+
     return (
         <>
         <NavBar
@@ -41,11 +51,11 @@ const SearchPage = () => {
         <div className="flex flex-col items-center py-5">
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
-
+            {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}
             {cards && (
                 <div className="grid grid-cols-4 gap-4 justify-between mx-24">
                     {cards.map((card) => (
-                        <Card key={card.id} card={card} />
+                        <Card key={card.id} card={card} cardError={handleCardError}/>
                     ))}
                 </div>
                 
