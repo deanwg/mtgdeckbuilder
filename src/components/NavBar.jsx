@@ -19,7 +19,7 @@ const NavBar = ({setError, query, setQuery, handleSearch, handleKeyDown}) => {
                     onKeyDown={handleKeyDown}
                     onFocus={() => setError("")}
                 />
-            <button className="bg-orange-500 p-2 ml-3 rounded-md"onClick={handleSearch}>Search</button>
+            <button className="bg-orange-500 p-2 ml-3 rounded-md" onClick={handleSearch}>Search</button>
             </div> 
 
             <div className="flex flex-row items-center">

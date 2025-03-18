@@ -32,7 +32,7 @@ const SearchPage = () => {
     }
 
     const handleCardError = (message, toastStyle) => {
-        setToast(message, toastStyle);
+        setToast({message, toastStyle});
       };
     
       const clearToast = () => {
