@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from '../Logo.png';
+import { Link } from "react-router-dom";
 
 
 
@@ -19,11 +20,15 @@ const NavBar = ({setError, query, setQuery, handleSearch, handleKeyDown}) => {
                     onKeyDown={handleKeyDown}
                     onFocus={() => setError("")}
                 />
-            <button className="bg-orange-500 p-2 ml-3 rounded-md" onClick={handleSearch}>Search</button>
+            <Link to="/">
+                <button className="bg-orange-500 p-2 ml-3 rounded-md" onClick={handleSearch}>Search</button>
+            </Link>
             </div> 
 
             <div className="flex flex-row items-center">
-                <button className="bg-orange-500 p-2 rounded-md">Seach Syntax</button>
+                <Link to="/syntax">
+                    <button className="bg-orange-500 p-2 rounded-md">Search Syntax</button>
+                </Link>
                 <button className="bg-orange-500 p-2 ml-3 rounded-md mr-2">Deck Editor</button>
             </div>
         </div>

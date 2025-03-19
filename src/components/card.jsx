@@ -75,7 +75,7 @@ const Card = ({ card, cardError }) => {
             onClick={() => setExpanded(false)}
           >
             <div
-              className="w-2/3 bg-slate-100 shadow-xl rounded-md relative"
+              className="w-2/5 bg-slate-100 shadow-xl rounded-md relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -95,8 +95,13 @@ const Card = ({ card, cardError }) => {
                 <div className="flex flex-col justify-between p-2 pr-8 max-w-96">
                   <div>
                     <h2 className="text-2xl font-bold text-center">{card.name}</h2>
-                    <p className="text-lg text-slate-600 text-center mb-10">{card.type_line}</p>
-                    <p className="text-lg text-slate-600 ml-4">{card.oracle_text}</p>
+                    <p className="text-lg text-slate-600 text-center">{card.type_line}</p>
+                  </div>
+                  <div>
+                  <p className="text-lg text-slate-600 ml-4">{card.oracle_text}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600 text-center">{card.flavor_text}</p>
                   </div>
                   <div className="flex flex-row justify-center items-center">
                     <div className="flex items-center">
