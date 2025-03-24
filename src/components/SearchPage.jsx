@@ -48,7 +48,7 @@ const SearchPage = () => {
         handleSearch={handleSearch}
         handleKeyDown={handleKeyDown}
         />
-        <div className="flex flex-col items-center py-5">
+        <div className="flex flex-col items-center py-5 bg-slate-100 h-screen">
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}

@@ -25,7 +25,7 @@ const Card = ({ card, cardError }) => {
   return (
     <>
       <div
-        className="flex flex-row rounded-lg shadow-md mt-5 transition-all duration-200 ease-in-out hover:shadow-xl hover:scale-105 cursor-pointer"
+        className="flex flex-row rounded-lg shadow-md bg-white mt-5 transition-all duration-200 ease-in-out hover:shadow-xl hover:scale-105 cursor-pointer"
         onClick={() => setExpanded(true)}
       >
         <div className="w-1/2">
@@ -75,11 +75,11 @@ const Card = ({ card, cardError }) => {
             onClick={() => setExpanded(false)}
           >
             <div
-              className="w-2/5 bg-slate-100 shadow-xl rounded-md relative"
+              className="w-2/5 bg-white shadow-xl rounded-md relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-0 right-0 text-lg p-2 text-gray-500 hover:text-gray-700"
+                className="absolute top-0 right-0 text-lg p-2 text-gray-500"
                 onClick={() => setExpanded(false)}
               >
                 x
