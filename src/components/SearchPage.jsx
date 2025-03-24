@@ -1,34 +1,39 @@
 import NavBar from "./NavBar"
-import { useState  } from "react";
+import { useState, useEffect  } from "react";
 import Card from "./Card"
 import fetchCards from "../api/mtgApi";
 import Toast from "./toast";
+import { useLocation } from "react-router-dom";
 
 
 const SearchPage = () => {
+    const location = useLocation();
+    const initialQuery = location.state?.query || "";
+
     const [query, setQuery] = useState("");
     const [cards, setCards] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [toast , setToast] = useState({message: "", toastStyle: "info"});
 
-    const handleSearch = async () => {
+    useEffect(() => {
+        if (initialQuery) {
+            setQuery(initialQuery);
+            handleSearch(initialQuery);
+        }
+    }, [initialQuery]);
+
+    const handleSearch = async (searchTerm = query) => {
         setError("");
         setLoading(true);
         setCards([])
         try { 
-            const result = await fetchCards(query);
+            const result = await fetchCards(searchTerm);
             setCards(result);
         } catch (err) {
             setError("No cards found");
         }
         setLoading(false);
-    }
-
-    const handleKeyDown = (event) => {
-        if(event.key === "Enter") {
-            handleSearch();
-        }
     }
 
     const handleCardError = (message, toastStyle) => {
@@ -41,13 +46,7 @@ const SearchPage = () => {
 
     return (
         <>
-        <NavBar
-        query={query}
-        setQuery={setQuery}
-        setError={setError}
-        handleSearch={handleSearch}
-        handleKeyDown={handleKeyDown}
-        />
+        <NavBar />
         <div className="flex flex-col items-center py-5 bg-slate-100 h-screen">
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}

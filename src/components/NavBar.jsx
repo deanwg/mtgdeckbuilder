@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from '../Logo.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 
-const NavBar = ({setError, query, setQuery, handleSearch, handleKeyDown}) => {
+const NavBar = () => {
 
+    const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+    
+    const handleSearch = () => {
+        navigate("/", {state : { query: query}})
+    }
+    const handleKeyDown = (e) => {
+        if (e.key ==="Enter") {
+            handleSearch();
+        }
+    }
     return (
         <div className="flex flex-row justify-between bg-slate-300 w-full">
             <img src={Logo} className="w-32 pb-2"/>
@@ -18,11 +29,8 @@ const NavBar = ({setError, query, setQuery, handleSearch, handleKeyDown}) => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    onFocus={() => setError("")}
                 />
-            <Link to="/">
                 <button className="bg-orange-500 p-2 ml-3 rounded-md" onClick={handleSearch}>Search</button>
-            </Link>
             </div> 
 
             <div className="flex flex-row items-center">
