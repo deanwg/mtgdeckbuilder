@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { Add, Remove } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import useDeckStore from "../store/deckStore";
 
 const Card = ({ card, cardError }) => {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
+
+  const addCard = useDeckStore((state) => state.addCardToDeck);
+
+  const handleAddCard = (e) => {
+    e.stopPropagation();
+
+    addCard("default", {...card, count});
+  }
 
   const increaseCount = (e) => {
     e.stopPropagation();
@@ -57,7 +66,7 @@ const Card = ({ card, cardError }) => {
                 <Add />
               </IconButton>
             </div>
-            <button className="rounded shadow-md text-center text-sm p-1 bg-orange-400">
+            <button className="rounded shadow-md text-center text-sm p-1 bg-orange-400" onClick={handleAddCard}>
               Add to Deck
             </button>
           </div>
@@ -118,7 +127,7 @@ const Card = ({ card, cardError }) => {
                         <Add />
                       </IconButton>
                     </div>
-                    <button className="rounded shadow-md text-center text-xl p-2 bg-orange-400">
+                    <button className="rounded shadow-md text-center text-xl p-2 bg-orange-400" onClick={handleAddCard}>
                       Add to Deck
                     </button>
                   </div>
