@@ -18,6 +18,7 @@ const NavBar = () => {
             handleSearch();
         }
     }
+
     return (
         <div className="flex flex-row justify-between bg-slate-300 w-full">
             <img src={Logo} className="w-32 pb-2"/>
@@ -37,7 +38,9 @@ const NavBar = () => {
                 <Link to="/syntax">
                     <button className="bg-orange-500 p-2 rounded-md">Search Syntax</button>
                 </Link>
-                <button className="bg-orange-500 p-2 ml-3 rounded-md mr-2">Deck Editor</button>
+                <Link to="/deckeditor">
+                    <button className="bg-orange-500 p-2 ml-3 rounded-md mr-2">Deck Editor</button>
+                </Link>
             </div>
         </div>
     )

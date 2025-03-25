@@ -1,6 +1,7 @@
 import './index.css';
 import SearchPage from './components/SearchPage';
 import SyntaxPage from './pages/SyntaxPage';
+import DeckEditor from './pages/DeckEditor';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SearchPage />}/>
           <Route path="/syntax" element={<SyntaxPage />}/>
+          <Route path ="/deckeditor" element={<DeckEditor />}/>
         </Routes>
     </Router>
   )

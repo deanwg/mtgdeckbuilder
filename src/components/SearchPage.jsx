@@ -10,7 +10,6 @@ import DeckOverlay from "./DeckOverlay";
 const SearchPage = () => {
     const location = useLocation();
     const initialQuery = location.state?.query || "";
-
     const [query, setQuery] = useState("");
     const [cards, setCards] = useState([]);
     const [error, setError] = useState("");
