@@ -75,7 +75,7 @@ const Card = ({ card, cardError }) => {
             onClick={() => setExpanded(false)}
           >
             <div
-              className="w-2/5 bg-white shadow-xl rounded-md relative"
+              className="w-2/4 bg-white shadow-xl rounded-md relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -85,11 +85,11 @@ const Card = ({ card, cardError }) => {
                 x
               </button>
               <div className="flex flex-row">
-                <div className="w-2/3">
+                <div>
                   <img
                     src={card.image_uris?.border_crop}
                     alt={card.name}
-                    className="object-cover m-2 rounded-lg"
+                    className="m-2 rounded-lg"
                   />
                 </div>
                 <div className="flex flex-col justify-between p-2 pr-8 max-w-96">
