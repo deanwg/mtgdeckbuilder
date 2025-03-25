@@ -4,6 +4,7 @@ import Card from "./Card"
 import fetchCards from "../api/mtgApi";
 import Toast from "./toast";
 import { useLocation } from "react-router-dom";
+import DeckOverlay from "./DeckOverlay";
 
 
 const SearchPage = () => {
@@ -47,7 +48,7 @@ const SearchPage = () => {
     return (
         <>
         <NavBar />
-        <div className="flex flex-col items-center py-5 bg-slate-100 h-screen">
+        <div className="flex flex-col items-center py-5 bg-slate-100 h-[90vh] overflow-y-auto">
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}
@@ -60,6 +61,7 @@ const SearchPage = () => {
                 
             )}
         </div>
+        <DeckOverlay />
         </>
 
     )
