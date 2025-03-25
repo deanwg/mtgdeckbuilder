@@ -48,7 +48,7 @@ const SearchPage = () => {
     return (
         <>
         <NavBar />
-        <div className="flex flex-col items-center py-5 bg-slate-100 h-[90vh] overflow-y-auto">
+        <div className="flex flex-col items-center py-5 bg-slate-100 h-[50vh] overflow-y-auto">
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}

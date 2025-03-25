@@ -40,6 +40,9 @@ const useDeckStore = create(
           ),
         })),
     }),
+    {
+      name: "mtg-decks"
+    }
   )
 );
 

@@ -6,13 +6,18 @@ import useDeckStore from "../store/deckStore";
 const Card = ({ card, cardError }) => {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
-
+  const decks = useDeckStore((state) => state.decks)
+  const deck = decks.find((deck) => deck.id ==='default');
   const addCard = useDeckStore((state) => state.addCardToDeck);
 
   const handleAddCard = (e) => {
     e.stopPropagation();
-
-    addCard("default", {...card, count});
+    const cardCount = deck.cards.filter(c =>  c.name === card.name).length;
+    if (cardCount + count <= 4) {
+      for(let i = 0; i < count; i++) {
+        addCard("default", {...card, count});
+      }
+    } else (cardError(`You already have ${cardCount} copies of this card in your deck, you can't have more than 4 cards in a deck`, "error"))
   }
 
   const increaseCount = (e) => {
