@@ -57,7 +57,7 @@ const SearchPage = () => {
     return (
         <>
         <NavBar />
-        <div className={`flex flex-col items-center py-5 bg-slate-100 overflow-y-auto tranisition-all duration-500 ${displayDeck ?  "h-[90vh]" : "h-[50vh]"}`}>
+        <div className={`flex flex-col items-center py-5 bg-slate-100 overflow-y-auto tranisition-all duration-500 ${displayDeck ?  "h-[50vh]" : "h-[90vh]"}`}>
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}
@@ -70,7 +70,7 @@ const SearchPage = () => {
                 
             )}
         </div>
-        <div className="flex justify-center text-2xl bg-slate-100 hover:cursor-pointer" onClick={handleDisplayDeck}>{displayDeck ? "^" : "v"}</div>
+        <div className="flex justify-center text-2xl bg-slate-100 hover:cursor-pointer" onClick={handleDisplayDeck}>{displayDeck ? "v" : "^"}</div>
         <DeckOverlay />
         </>
 

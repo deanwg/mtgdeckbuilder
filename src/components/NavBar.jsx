@@ -21,7 +21,9 @@ const NavBar = () => {
 
     return (
         <div className="flex flex-row justify-between bg-slate-300 w-full">
-            <img src={Logo} className="w-32 pb-2"/>
+            <Link to='/'>
+                <img src={Logo} className="w-32 pb-2"/>
+            </Link>
             <div className="flex flex-row my-2">
                 <input
                     className="border rounded border-gray-500 text-center"
