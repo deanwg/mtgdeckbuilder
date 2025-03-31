@@ -2,7 +2,7 @@ import NavBar from "./NavBar"
 import { useState, useEffect  } from "react";
 import Card from "./Card"
 import fetchCards from "../api/mtgApi";
-import Toast from "./toast";
+import Toast from "./Toast";
 import { useLocation } from "react-router-dom";
 import DeckOverlay from "./DeckOverlay";
 
@@ -15,6 +15,7 @@ const SearchPage = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [toast , setToast] = useState({message: "", toastStyle: "info"});
+    const [displayDeck, setDisplayDeck] = useState(false);
 
     useEffect(() => {
         if (initialQuery) {
@@ -40,14 +41,23 @@ const SearchPage = () => {
         setToast({message, toastStyle});
       };
     
-      const clearToast = () => {
+    const clearToast = () => {
         setToast({message: "", toastStyle: ""});
       };
+
+    const handleDisplayDeck = () => {
+        if (displayDeck) {
+            setDisplayDeck(false);
+        } else {
+            setDisplayDeck(true);
+        }
+    }
+
 
     return (
         <>
         <NavBar />
-        <div className="flex flex-col items-center py-5 bg-slate-100 h-[50vh] overflow-y-auto">
+        <div className={`flex flex-col items-center py-5 bg-slate-100 overflow-y-auto tranisition-all duration-500 ${displayDeck ?  "h-[90vh]" : "h-[50vh]"}`}>
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {toast.message && <Toast message={toast.message} clearMessage={clearToast} toastStyle={toast.toastStyle}/>}
@@ -60,6 +70,7 @@ const SearchPage = () => {
                 
             )}
         </div>
+        <div className="flex justify-center text-2xl bg-slate-100 hover:cursor-pointer" onClick={handleDisplayDeck}>{displayDeck ? "^" : "v"}</div>
         <DeckOverlay />
         </>
 
