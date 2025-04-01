@@ -1,18 +1,30 @@
 1: Deck storage
-    Be able to create a deck
+    Be able to creation of multiple decks
     Enable User to add cards to decks
-    
-    When a use is searching for a cards, a modal? some sort of inverse accordian maybe? from below - you're able to click, it raises and shows current cards in your deck
+    Set image for deck preview
+
+
 
 
 2: Search Functionality
     to create a search function that returns a list of matching cards
 
     Colour/Rarity Filtering
-
+    (add these in navbar)
     Potentially type Filtering
+
+    Navbar should have an option to select which deck is currently being used 
+    Perhaps a drop-down that you can select active deck from 
+    when user edits a deck that is set as active deck for search purposes
+    
 
 
 
 3: Potentially importing/exporting decks in MTG format or something like that
 
+
+4: Deck editor, enable users to modify amount of cards in deck
+
+    Deck editor page should contain all decks user has with their deck image preview with name below
+
+    Individual deck editing page should have a side bar that opens when a user clicks a card, this will contain more information and allow users to modify quantity of cards in deck

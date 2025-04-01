@@ -6,7 +6,7 @@ const SyntaxPage = () => {
 
 
     return (
-        <div>
+        <div className="bg-slate-100 h-[100vh]">
             <NavBar />
             <h1>Colours</h1>
             <p>You can find cards that are a certain color using the c: or color: keyword, and cards that are a certain color identity using the id: or identity: keywords.</p>

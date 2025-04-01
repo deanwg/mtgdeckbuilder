@@ -1,5 +1,7 @@
 import NavBar from "../components/NavBar";
 import useDeckStore from "../store/deckStore";
+import QuantityEdit from "../components/QuantityEdit";
+import { useState } from "react";
 
 
 const DeckEditor = () => {
@@ -7,7 +9,16 @@ const DeckEditor = () => {
 const decks = useDeckStore((state) => state.decks)
 const deck = decks.find((deck) => deck.id ==='default');
 deck.cards.sort((a, b) => a.cmc - b.cmc);
+const [editing, setEditing] = useState(false);
+const [card, setCard] = useState([]);
 
+
+
+
+const handleClick = (e) => {
+    setEditing(true);
+    setCard(e);
+}
 const duplicateOffsets = [
     "top-0",
     "top-[25px]",
@@ -17,8 +28,8 @@ const duplicateOffsets = [
 
     return (
         <>
-        <div className=" flex flex-col bg-black h-[100vh]">
-        <NavBar />
+        <div className="flex flex-col bg-black h-[100vh]">
+            <NavBar />
             <div className="text-white">Creatures</div>  
             <div>
                 {Object.values(
@@ -39,11 +50,15 @@ const duplicateOffsets = [
                         alt={card.name}
                         className={`rounded-lg w-full absolute ${duplicateOffsets[index]}`}
                         style={{zIndex: index}}
+                        onClick={() => handleClick(card)}
                     />
                     ))}
                 </div>
                 ))}
             </div>
+            {editing && (
+                <QuantityEdit card={card} />
+            )}
         </div>
         </>
     )
