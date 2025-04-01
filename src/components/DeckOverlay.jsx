@@ -5,7 +5,6 @@ import useDeckStore from "../store/deckStore";
 const DeckOverlay = () => {
 
 const decks = useDeckStore((state) => state.decks)
-// const deck = decks.find((deck) => deck.id === "default").cards.sort((a, b) => a.cmc - b.cmc);
 const deck = decks.find((deck) => deck.id ==='default');
 deck.cards.sort((a, b) => a.cmc - b.cmc);
  
