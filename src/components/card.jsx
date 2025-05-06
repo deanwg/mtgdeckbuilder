@@ -1,24 +1,28 @@
 import { useState } from "react";
-import { Add, Remove } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { Add, Remove } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import useDeckStore from "../store/deckStore";
 
 const Card = ({ card, cardError }) => {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
-  const decks = useDeckStore((state) => state.decks)
-  const deck = decks.find((deck) => deck.id ==='default');
+  const decks = useDeckStore((state) => state.decks);
+  const deck = decks.find((deck) => deck.id === "default");
   const addCard = useDeckStore((state) => state.addCardToDeck);
 
   const handleAddCard = (e) => {
     e.stopPropagation();
-    const cardCount = deck.cards.filter(c =>  c.name === card.name).length;
+    const cardCount = deck.cards.filter((c) => c.name === card.name).length;
     if (cardCount + count <= 4) {
-      for(let i = 0; i < count; i++) {
-        addCard("default", {...card, count});
+      for (let i = 0; i < count; i++) {
+        addCard("default", { ...card, count });
       }
-    } else (cardError(`You already have ${cardCount} copies of this card in your deck, you can't have more than 4 cards in a deck`, "error"))
-  }
+    } else
+      cardError(
+        `You already have ${cardCount} copies of this card in your deck, you can't have more than 4 cards in a deck`,
+        "error"
+      );
+  };
 
   const increaseCount = (e) => {
     e.stopPropagation();
@@ -43,9 +47,9 @@ const Card = ({ card, cardError }) => {
         onClick={() => setExpanded(true)}
       >
         <div className="w-1/2">
-          <img 
-            src={card.image_uris?.border_crop} 
-            alt={card.name} 
+          <img
+            src={card.image_uris?.border_crop}
+            alt={card.name}
             className="object-cover m-2 rounded-l-lg"
           />
         </div>
@@ -71,7 +75,10 @@ const Card = ({ card, cardError }) => {
                 <Add />
               </IconButton>
             </div>
-            <button className="rounded shadow-md text-center text-sm p-1 bg-orange-400" onClick={handleAddCard}>
+            <button
+              className="rounded shadow-md text-center text-sm p-1 bg-orange-400"
+              onClick={handleAddCard}
+            >
               Add to Deck
             </button>
           </div>
@@ -108,14 +115,22 @@ const Card = ({ card, cardError }) => {
                 </div>
                 <div className="flex flex-col justify-between p-2 pr-8 max-w-96">
                   <div>
-                    <h2 className="text-2xl font-bold text-center">{card.name}</h2>
-                    <p className="text-lg text-slate-600 text-center">{card.type_line}</p>
+                    <h2 className="text-2xl font-bold text-center">
+                      {card.name}
+                    </h2>
+                    <p className="text-lg text-slate-600 text-center">
+                      {card.type_line}
+                    </p>
                   </div>
                   <div>
-                  <p className="text-lg text-slate-600 ml-4">{card.oracle_text}</p>
+                    <p className="text-lg text-slate-600 ml-4">
+                      {card.oracle_text}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-600 text-center">{card.flavor_text}</p>
+                    <p className="text-sm text-slate-600 text-center">
+                      {card.flavor_text}
+                    </p>
                   </div>
                   <div className="flex flex-row justify-center items-center">
                     <div className="flex items-center">
@@ -132,7 +147,10 @@ const Card = ({ card, cardError }) => {
                         <Add />
                       </IconButton>
                     </div>
-                    <button className="rounded shadow-md text-center text-xl p-2 bg-orange-400" onClick={handleAddCard}>
+                    <button
+                      className="rounded shadow-md text-center text-xl p-2 bg-orange-400"
+                      onClick={handleAddCard}
+                    >
                       Add to Deck
                     </button>
                   </div>

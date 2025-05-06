@@ -1,19 +1,19 @@
-import './index.css';
-import SearchPage from './components/SearchPage';
-import SyntaxPage from './pages/SyntaxPage';
-import DeckEditor from './pages/DeckEditor';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import "./index.css";
+import SearchPage from "./components/SearchPage";
+import SyntaxPage from "./pages/SyntaxPage";
+import DeckEditor from "./pages/DeckEditor";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-        <Routes>
-          <Route path="/" element={<SearchPage />}/>
-          <Route path="/syntax" element={<SyntaxPage />}/>
-          <Route path ="/deckeditor" element={<DeckEditor />}/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<SearchPage />} />
+        <Route path="/syntax" element={<SyntaxPage />} />
+        <Route path="/deckeditor" element={<DeckEditor />} />
+      </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

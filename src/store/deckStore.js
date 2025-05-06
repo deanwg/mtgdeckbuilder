@@ -1,13 +1,13 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const useDeckStore = create(
   persist(
     (set) => ({
       decks: [
         {
-          id: 'default',
-          name: 'Default Deck',
+          id: "default",
+          name: "Default Deck",
           cards: [],
         },
       ],
@@ -35,13 +35,16 @@ const useDeckStore = create(
         set((state) => ({
           decks: state.decks.map((deck) =>
             deck.id === deckId
-              ? { ...deck, cards: deck.cards.filter((card) => card.id !== cardId) }
+              ? {
+                  ...deck,
+                  cards: deck.cards.filter((card) => card.id !== cardId),
+                }
               : deck
           ),
         })),
     }),
     {
-      name: "mtg-decks"
+      name: "mtg-decks",
     }
   )
 );

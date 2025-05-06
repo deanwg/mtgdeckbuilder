@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-
 const styles = {
-    error: "bg-red-600 text-white",
-    success: "bg-green-600 text-white"
-}
+  error: "bg-red-600 text-white",
+  success: "bg-green-600 text-white",
+};
 
-const Toast = ({ message, clearMessage, toastStyle}) => {
+const Toast = ({ message, clearMessage, toastStyle }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
