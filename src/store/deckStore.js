@@ -24,25 +24,56 @@ const useDeckStore = create(
 
       addCardToDeck: (deckId, card) =>
         set((state) => ({
-          decks: state.decks.map((deck) =>
-            deck.id === deckId
-              ? { ...deck, cards: [...deck.cards, card] }
-              : deck
-          ),
+          decks: state.decks.map((deck) => {
+            if (deck.id != deckId) return deck;
+            const count = card.count;
+            const cardExists = deck.cards.find((c) => c.name === card.name);
+
+            if (cardExists) {
+              return {
+                ...deck,
+                cards: deck.cards.map((c) =>
+                  c.name === card.name ? { ...c, count: c.count + count } : c
+                ),
+              };
+            } else {
+              return {
+                ...deck,
+                cards: [...deck.cards, { ...card, count }],
+              };
+            }
+          }),
         })),
 
-      removeCardFromDeck: (deckId, cardId) =>
+      removeCardFromDeck: (deckId, card) =>
         set((state) => ({
           decks: state.decks.map((deck) =>
             deck.id === deckId
               ? {
                   ...deck,
-                  cards: deck.cards.filter((card) => card.id !== cardId),
+                  cards: deck.cards.filter((c) => c.name !== card.name),
                 }
               : deck
           ),
         })),
+
+      updateQuantity: (deckId, card) => {
+        set((state) => ({
+          decks: state.decks.map((deck) => {
+            if (deck.id !== deckId) return deck;
+            const count = card.count;
+
+            return {
+              ...deck,
+              cards: deck.cards.map((c) =>
+                c.name === card.name ? { ...c, count: count } : c
+              ),
+            };
+          }),
+        }));
+      },
     }),
+
     {
       name: "mtg-decks",
     }

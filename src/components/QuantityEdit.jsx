@@ -6,10 +6,9 @@ import { IconButton } from "@mui/material";
 const QuantityEdit = ({ card }) => {
   const decks = useDeckStore((state) => state.decks);
   const deck = decks.find((deck) => deck.id === "default");
-  const initialCount = deck.cards.filter(
-    (count) => count.name === card.name
-  ).length;
+  const initialCount = deck.cards.find((c) => c.name === card.name).count;
   const [count, setCount] = useState();
+  const updateQuantity = useDeckStore((state) => state.updateQuantity);
 
   useEffect(() => {
     setCount(initialCount);
@@ -29,9 +28,13 @@ const QuantityEdit = ({ card }) => {
     }
   };
 
+  const handleChangeQuantity = () => {
+    updateQuantity("default", { ...card, count });
+  };
+
   return (
-    <div className="absolute z-10 right-0 h-full p-6 bg-black border border-black border-l-orange-600 border-l-8 rounded-tl-lg rounded-bl-lg w-1/3">
-      <div className="flex flex-col bg-slate-200 shadow-lg shadow-slate-400 rounded-lg m-4">
+    <div className="absolute z-10 right-0 h-full p-6 bg-black border border-black border-l-orange-600 border-l-8 rounded-l-xl w-1/3">
+      <div className="flex flex-col bg-slate-200 shadow-lg shadow-slate-600 rounded-lg m-4">
         <div className="flex items-center justify-center">
           <img
             src={card.image_uris?.border_crop}
@@ -69,7 +72,10 @@ const QuantityEdit = ({ card }) => {
                 <Add />
               </IconButton>
             </div>
-            <button className="rounded shadow-md text-center text-sm p-3 bg-orange-400">
+            <button
+              className="rounded shadow-md text-center text-sm p-3 bg-orange-400"
+              onClick={handleChangeQuantity}
+            >
               Change Quantity
             </button>
           </div>

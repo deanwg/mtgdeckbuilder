@@ -56,7 +56,7 @@ const SearchPage = () => {
     <>
       <NavBar />
       <div
-        className={`flex flex-col items-center py-5 bg-slate-100 transition-all duration-500 ${
+        className={`flex flex-col items-center py-5 overflow-auto bg-slate-100 transition-all duration-500 ${
           displayDeck ? "h-[50vh]" : "h-[93vh]"
         }`}
       >

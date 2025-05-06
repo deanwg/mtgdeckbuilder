@@ -12,11 +12,11 @@ const Card = ({ card, cardError }) => {
 
   const handleAddCard = (e) => {
     e.stopPropagation();
-    const cardCount = deck.cards.filter((c) => c.name === card.name).length;
+    const cardCount = deck.cards.find((c) => c.name === card.name)?.count || 0;
+    console.log("Current count selected:", cardCount);
+
     if (cardCount + count <= 4) {
-      for (let i = 0; i < count; i++) {
-        addCard("default", { ...card, count });
-      }
+      addCard("default", { ...card, count });
     } else
       cardError(
         `You already have ${cardCount} copies of this card in your deck, you can't have more than 4 cards in a deck`,
