@@ -96,7 +96,7 @@ const Card = ({ card, cardError }) => {
             onClick={() => setExpanded(false)}
           >
             <div
-              className="w-2/5 bg-white shadow-xl rounded-md relative"
+              className="bg-white shadow-xl rounded-md relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
