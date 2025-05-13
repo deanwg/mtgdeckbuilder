@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import useDeckStore from "../store/deckStore";
 import QuantityEdit from "../components/QuantityEdit";
 import StackedCard from "../components/StackedCard";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const DeckEditor = () => {
   const decks = useDeckStore((state) => state.decks);
@@ -12,8 +12,14 @@ const DeckEditor = () => {
   const [card, setCard] = useState([]);
 
   const handleClick = (e) => {
-    setEditing(true);
     setCard(e);
+    if (!editing) {
+      setEditing(true);
+    }
+  };
+
+  const close = () => {
+    setEditing(false);
   };
 
   return (
@@ -26,7 +32,7 @@ const DeckEditor = () => {
             <StackedCard key={card.id} card={card} onClick={handleClick} />
           ))}
         </div>
-        {editing && <QuantityEdit card={card} />}
+        {editing && <QuantityEdit card={card} close={close} />}
       </div>
     </>
   );

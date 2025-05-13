@@ -13,9 +13,6 @@ const StackedCard = ({ card, onClick }) => {
           onClick={() => onClick?.(card)}
         />
       ))}
-      <span className="absolute bottom-1 right-1 text-white text-lg">
-        x {card.count}
-      </span>
     </div>
   );
 };

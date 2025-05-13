@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import useDeckStore from "../store/deckStore";
-import { Add, Remove, DeleteForever as Delete } from "@mui/icons-material";
+import {
+  Add,
+  Remove,
+  DeleteForever as Delete,
+  Close,
+} from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-const QuantityEdit = ({ card }) => {
+const QuantityEdit = ({ card, close }) => {
   const decks = useDeckStore((state) => state.decks);
   const deck = decks.find((deck) => deck.id === "default");
   const initialCount = deck.cards.find((c) => c.name === card.name)?.count ?? 0;
@@ -41,11 +46,16 @@ const QuantityEdit = ({ card }) => {
   return (
     <div className="absolute z-10 right-0 h-full p-6 bg-black border border-black border-l-orange-600 border-l-8 rounded-l-xl w-1/3">
       <div className="flex flex-col bg-slate-200 shadow-lg shadow-slate-600 rounded-lg m-4">
+        <div className="flex justify-end">
+          <IconButton onClick={close}>
+            <Close />
+          </IconButton>
+        </div>
         <div className="flex items-center justify-center">
           <img
             src={card.image_uris?.border_crop}
             alt={card.name}
-            className="m-2 rounded-lg w-3/5"
+            className="m-2 rounded-lg w-3/5 mt-5"
           />
         </div>
         <div className="flex flex-col justify-between p-2">
