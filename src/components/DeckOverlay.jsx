@@ -1,4 +1,5 @@
 import useDeckStore from "../store/deckStore";
+import StackedCard from "./StackedCard";
 
 const DeckOverlay = ({ isOpen }) => {
   const decks = useDeckStore((state) => state.decks);
@@ -13,13 +14,8 @@ const DeckOverlay = ({ isOpen }) => {
     >
       <div className="h-full flex flex-wrap justify-start p-4">
         {deck.cards.map((card) => (
-          <div className="flex flex-col items-center">
-            <img
-              src={card.image_uris?.border_crop}
-              alt={card.name}
-              className="m-2 rounded-lg w-48"
-            />
-            <span className="text-white">X {card.count} </span>
+          <div key={card.id} className="flex flex-col items-center">
+            <StackedCard card={card} />
           </div>
         ))}
       </div>

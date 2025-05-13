@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import useDeckStore from "../store/deckStore";
 import QuantityEdit from "../components/QuantityEdit";
+import StackedCard from "../components/StackedCard";
 import { useState } from "react";
 
 const DeckEditor = () => {
@@ -14,7 +15,6 @@ const DeckEditor = () => {
     setEditing(true);
     setCard(e);
   };
-  const duplicateOffsets = ["top-0", "top-[25px]", "top-[50px]", "top-[75px]"];
 
   return (
     <>
@@ -22,30 +22,8 @@ const DeckEditor = () => {
         <NavBar />
         <div className="text-white">Creatures</div>
         <div>
-          {Object.values(
-            deck.cards.reduce((duplicates, card) => {
-              if (!duplicates[card.id]) {
-                duplicates[card.id] = [];
-              }
-              duplicates[card.id].push(card);
-              return duplicates;
-            }, {})
-          ).map((duplicate) => (
-            <div
-              key={duplicate[0].id}
-              className="relative inline-block m-2 w-48 h-[400px]"
-            >
-              {duplicate.map((card, index) => (
-                <img
-                  key={index}
-                  src={card.image_uris?.border_crop}
-                  alt={card.name}
-                  className={`rounded-lg w-full absolute ${duplicateOffsets[index]}`}
-                  style={{ zIndex: index }}
-                  onClick={() => handleClick(card)}
-                />
-              ))}
-            </div>
+          {deck.cards.map((card) => (
+            <StackedCard key={card.id} card={card} onClick={handleClick} />
           ))}
         </div>
         {editing && <QuantityEdit card={card} />}
