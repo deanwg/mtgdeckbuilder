@@ -6,9 +6,10 @@ import { IconButton } from "@mui/material";
 const QuantityEdit = ({ card }) => {
   const decks = useDeckStore((state) => state.decks);
   const deck = decks.find((deck) => deck.id === "default");
-  const initialCount = deck.cards.find((c) => c.name === card.name).count;
+  const initialCount = deck.cards.find((c) => c.name === card.name)?.count ?? 0;
   const [count, setCount] = useState(initialCount);
   const updateQuantity = useDeckStore((state) => state.updateQuantity);
+  const removeCard = useDeckStore((state) => state.removeCardFromDeck);
 
   useEffect(() => {
     setCount(initialCount);
@@ -30,6 +31,11 @@ const QuantityEdit = ({ card }) => {
 
   const handleChangeQuantity = () => {
     updateQuantity("default", { ...card, count });
+  };
+
+  const handleRemove = () => {
+    setCount(0);
+    removeCard("default", card);
   };
 
   return (
@@ -74,13 +80,13 @@ const QuantityEdit = ({ card }) => {
             </div>
             <div>
               <button
-                className="rounded shadow-md text-center text-sm p-3 bg-orange-400"
+                className="rounded shadow-md text-center text-sm p-3 ml-8 bg-orange-400"
                 onClick={handleChangeQuantity}
               >
                 Change Quantity
               </button>
-              <IconButton>
-                <Delete className="[&>path]:fill-red-500 absolute left-10" />
+              <IconButton onClick={handleRemove}>
+                <Delete className="[&>path]:fill-red-500" />
               </IconButton>
             </div>
           </div>
