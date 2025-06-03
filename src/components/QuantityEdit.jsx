@@ -41,6 +41,7 @@ const QuantityEdit = ({ card, close }) => {
   const handleRemove = () => {
     setCount(0);
     removeCard("default", card);
+    close();
   };
 
   return (

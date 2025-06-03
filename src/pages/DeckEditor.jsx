@@ -24,12 +24,15 @@ const DeckEditor = () => {
 
   return (
     <>
-      <div className="flex flex-col bg-black h-[100vh]">
+      <div className="flex flex-col flex-wrap bg-black h-[100vh]">
         <NavBar />
         <div className="text-white">Creatures</div>
-        <div>
+        <div className="flex flex-wrap">
           {deck.cards.map((card) => (
-            <StackedCard key={card.id} card={card} onClick={handleClick} />
+            <div key={card.id}>
+              <div className="text-white text-center">x {card.count}</div>
+              <StackedCard card={card} onClick={handleClick} />
+            </div>
           ))}
         </div>
         {editing && <QuantityEdit card={card} close={close} />}
