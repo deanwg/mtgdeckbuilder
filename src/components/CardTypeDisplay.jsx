@@ -2,18 +2,18 @@ import { React } from "react";
 import useDeckStore from "../store/deckStore";
 import StackedCard from "./StackedCard";
 
-const CardTypeHeader = ({ name, onClick }) => {
+const CardTypeDisplay = ({ name, onClick }) => {
   const decks = useDeckStore((state) => state.decks);
   const deck = decks.find((deck) => deck.id === "default");
-  deck.cards.sort((a, b) => a.cmc - b.cmc);
+  const cardType = deck.cards
+    .filter((card) => card.type_line.split(" ")[0] === name)
+    .sort((a, b) => a.cmc - b.cmc);
 
   return (
     <>
-      <div className="text-orange-400 p-2 m-2 font-bold">{name}</div>
-      <div className="flex flex-wrap">
-        {deck.cards.map((card) => (
+      <div className="flex flex-row flex-wrap">
+        {cardType.map((card) => (
           <div key={card.id}>
-            <div className="text-white text-center">x {card.count}</div>
             <StackedCard card={card} onClick={onClick} />
           </div>
         ))}
@@ -22,4 +22,4 @@ const CardTypeHeader = ({ name, onClick }) => {
   );
 };
 
-export default CardTypeHeader;
+export default CardTypeDisplay;

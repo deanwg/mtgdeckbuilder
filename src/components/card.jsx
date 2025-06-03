@@ -9,24 +9,29 @@ const Card = ({ card, cardError }) => {
   const decks = useDeckStore((state) => state.decks);
   const deck = decks.find((deck) => deck.id === "default");
   const addCard = useDeckStore((state) => state.addCardToDeck);
+  const isBasicLand = card.type_line.startsWith("Basic");
+  const maxAllowed = isBasicLand ? 24 : 4;
 
   const handleAddCard = (e) => {
     e.stopPropagation();
     const cardCount = deck.cards.find((c) => c.name === card.name)?.count || 0;
-    console.log("Current count selected:", cardCount);
+    const isBasicLand = card.type_line.startsWith("Basic");
+    const maxAllowed = isBasicLand ? 24 : 4;
 
-    if (cardCount + count <= 4) {
+    if (cardCount + count <= maxAllowed) {
       addCard("default", { ...card, count });
     } else
       cardError(
-        `You already have ${cardCount} copies of this card in your deck, you can't have more than 4 cards in a deck`,
+        `You already have ${cardCount} copies of this card in your deck, you can't have more than ${maxAllowed} duplicate ${
+          isBasicLand ? "lands" : "cards"
+        } in a deck`,
         "error"
       );
   };
 
   const increaseCount = (e) => {
     e.stopPropagation();
-    if (count < 4) {
+    if (count < maxAllowed) {
       setCount(count + 1);
     } else {
       cardError("You can't have more than 4 cards in a standard deck", "error");
