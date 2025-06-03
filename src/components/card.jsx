@@ -48,7 +48,7 @@ const Card = ({ card, cardError }) => {
   return (
     <>
       <div
-        className="flex flex-row rounded-lg shadow-md bg-white mt-5 transition-all duration-200 ease-in-out hover:shadow-xl hover:scale-105 cursor-pointer"
+        className="flex flex-row rounded-lg shadow-md bg-white transition-all duration-200 ease-in-out hover:shadow-xl hover:scale-105 cursor-pointer"
         onClick={() => setExpanded(true)}
       >
         <div className="w-1/2">

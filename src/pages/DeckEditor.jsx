@@ -37,12 +37,12 @@ const DeckEditor = () => {
         <div className="flex flex-row flex-wrap">
           {types.map((type) => (
             <div className="flex flex-row">
-              <CardTypeDisplay key={type} name={type} onClick={handleClick} />
+              <CardTypeDisplay key={type} type={type} onClick={handleClick} />
             </div>
           ))}
         </div>
-        <div>
-          <CardTypeDisplay name="Basic" onClick={handleClick} />
+        <div className="text-white">
+          <CardTypeDisplay type="Basic" onClick={handleClick} />
         </div>
         {editing && <QuantityEdit card={card} close={close} />}
       </div>

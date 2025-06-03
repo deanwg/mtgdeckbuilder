@@ -15,6 +15,8 @@ const QuantityEdit = ({ card, close }) => {
   const [count, setCount] = useState(initialCount);
   const updateQuantity = useDeckStore((state) => state.updateQuantity);
   const removeCard = useDeckStore((state) => state.removeCardFromDeck);
+  const isBasicLand = card.type_line.startsWith("Basic");
+  const maxAllowed = isBasicLand ? 24 : 4;
 
   useEffect(() => {
     setCount(initialCount);
@@ -22,7 +24,7 @@ const QuantityEdit = ({ card, close }) => {
 
   const increaseCount = (e) => {
     e.stopPropagation();
-    if (count < 4) {
+    if (count < maxAllowed) {
       setCount(count + 1);
     }
   };
