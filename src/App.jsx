@@ -1,5 +1,5 @@
 import "./index.css";
-import SearchPage from "./components/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import SyntaxPage from "./pages/SyntaxPage";
 import DeckEditor from "./pages/DeckEditor";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

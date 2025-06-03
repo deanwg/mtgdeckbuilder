@@ -1,10 +1,10 @@
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import { useState, useEffect } from "react";
-import Card from "./Card";
+import Card from "../components/Card";
 import fetchCards from "../api/mtgApi";
-import Toast from "./Toast";
+import Toast from "../components/Toast";
 import { useLocation } from "react-router-dom";
-import DeckOverlay from "./DeckOverlay";
+import DeckOverlay from "../components/DeckOverlay";
 
 const SearchPage = () => {
   const location = useLocation();

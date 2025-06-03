@@ -3,6 +3,7 @@ import QuantityEdit from "../components/QuantityEdit";
 import { useState } from "react";
 import CardTypeDisplay from "../components/CardTypeDisplay";
 import useDeckStore from "../store/deckStore";
+import CreateDeckButton from "../components/CreateDeckButton";
 
 const DeckEditor = () => {
   const [editing, setEditing] = useState(false);
@@ -34,6 +35,7 @@ const DeckEditor = () => {
     <>
       <div className="flex flex-col bg-black min-h-screen">
         <NavBar />
+        <CreateDeckButton />
         <div className="flex flex-row flex-wrap">
           {types.map((type) => (
             <div className="flex flex-row">

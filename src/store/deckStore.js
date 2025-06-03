@@ -11,6 +11,9 @@ const useDeckStore = create(
           cards: [],
         },
       ],
+      selectedDeck: "default",
+
+      setSelectedDeck: (id) => set({ selectedDeck: id }),
 
       addDeck: (newDeck) =>
         set((state) => ({
@@ -25,7 +28,7 @@ const useDeckStore = create(
       addCardToDeck: (deckId, card) =>
         set((state) => ({
           decks: state.decks.map((deck) => {
-            if (deck.id != deckId) return deck;
+            if (deck.id !== deckId) return deck;
             const count = card.count;
             const cardExists = deck.cards.find((c) => c.name === card.name);
 
