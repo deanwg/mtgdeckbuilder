@@ -47,7 +47,7 @@ const QuantityEdit = ({ card, close }) => {
   };
 
   return (
-    <div className="absolute z-10 right-0 h-full p-6 bg-black border border-black border-l-orange-600 border-l-8 rounded-l-xl w-1/3">
+    <div className="fixed z-10 right-0 h-full bg-black border border-black border-l-orange-600 border-l-8 rounded-l-xl w-1/3">
       <div className="flex flex-col bg-slate-200 shadow-lg shadow-slate-600 rounded-lg m-4">
         <div className="flex justify-end">
           <IconButton onClick={close}>
