@@ -3,7 +3,8 @@ import StackedCard from "./StackedCard";
 
 const DeckOverlay = ({ isOpen }) => {
   const decks = useDeckStore((state) => state.decks);
-  const deck = decks.find((deck) => deck.id === "default");
+  const selectedDeck = useDeckStore((state) => state.selectedDeck);
+  const deck = decks.find((deck) => deck.id === selectedDeck);
   deck.cards.sort((a, b) => a.cmc - b.cmc);
 
   return (

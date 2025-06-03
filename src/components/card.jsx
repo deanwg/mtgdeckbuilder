@@ -7,7 +7,8 @@ const Card = ({ card, cardError }) => {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
   const decks = useDeckStore((state) => state.decks);
-  const deck = decks.find((deck) => deck.id === "default");
+  const selectedDeck = useDeckStore((state) => state.selectedDeck);
+  const deck = decks.find((deck) => deck.id === selectedDeck);
   const addCard = useDeckStore((state) => state.addCardToDeck);
   const isBasicLand = card.type_line.startsWith("Basic");
   const maxAllowed = isBasicLand ? 24 : 4;
@@ -19,7 +20,7 @@ const Card = ({ card, cardError }) => {
     const maxAllowed = isBasicLand ? 24 : 4;
 
     if (cardCount + count <= maxAllowed) {
-      addCard("default", { ...card, count });
+      addCard(selectedDeck, { ...card, count });
     } else
       cardError(
         `You already have ${cardCount} copies of this card in your deck, you can't have more than ${maxAllowed} duplicate ${

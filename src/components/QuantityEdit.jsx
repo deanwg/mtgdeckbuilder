@@ -10,7 +10,8 @@ import { IconButton } from "@mui/material";
 
 const QuantityEdit = ({ card, close }) => {
   const decks = useDeckStore((state) => state.decks);
-  const deck = decks.find((deck) => deck.id === "default");
+  const selectedDeck = useDeckStore((state) => state.selectedDeck);
+  const deck = decks.find((deck) => deck.id === selectedDeck);
   const initialCount = deck.cards.find((c) => c.name === card.name)?.count ?? 0;
   const [count, setCount] = useState(initialCount);
   const updateQuantity = useDeckStore((state) => state.updateQuantity);
@@ -37,12 +38,12 @@ const QuantityEdit = ({ card, close }) => {
   };
 
   const handleChangeQuantity = () => {
-    updateQuantity("default", { ...card, count });
+    updateQuantity(selectedDeck, { ...card, count });
   };
 
   const handleRemove = () => {
     setCount(0);
-    removeCard("default", card);
+    removeCard(selectedDeck, card);
     close();
   };
 

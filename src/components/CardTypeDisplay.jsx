@@ -4,7 +4,8 @@ import StackedCard from "./StackedCard";
 
 const CardTypeDisplay = ({ type, onClick }) => {
   const decks = useDeckStore((state) => state.decks);
-  const deck = decks.find((deck) => deck.id === "default");
+  const selectedDeck = useDeckStore((state) => state.selectedDeck);
+  const deck = decks.find((deck) => deck.id === selectedDeck);
   const cardType = deck.cards
     .filter((card) => card.type_line.split(" ")[0] === type)
     .sort((a, b) => a.cmc - b.cmc);

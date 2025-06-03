@@ -9,7 +9,8 @@ const DeckEditor = () => {
   const [editing, setEditing] = useState(false);
   const [card, setCard] = useState([]);
   const decks = useDeckStore((state) => state.decks);
-  const deck = decks.find((deck) => deck.id === "default");
+  const selectedDeck = useDeckStore((state) => state.selectedDeck);
+  const deck = decks.find((deck) => deck.id === selectedDeck);
 
   const handleClick = (e) => {
     setCard(e);

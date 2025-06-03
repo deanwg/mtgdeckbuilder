@@ -3,12 +3,14 @@ import useDeckStore from "../store/deckStore";
 
 const CreateDeckButton = () => {
   const addDeck = useDeckStore((state) => state.addDeck);
+  const setSelectedDeck = useDeckStore((state) => state.setSelectedDeck);
   const [deckName, setDeckName] = useState();
 
   const createNewDeck = () => {
     const newId = `deck-${Date.now()}`;
     addDeck({ id: newId, name: deckName, cards: [] });
-    setSelectedDeckId(newId);
+    setSelectedDeck(newId);
+    setDeckName("");
   };
 
   return (
