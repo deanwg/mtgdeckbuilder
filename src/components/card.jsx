@@ -3,7 +3,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import useDeckStore from "../store/deckStore";
 
-const Card = ({ card, cardError }) => {
+const Card = ({ card, toast }) => {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
   const decks = useDeckStore((state) => state.decks);
@@ -21,9 +21,15 @@ const Card = ({ card, cardError }) => {
 
     if (cardCount + count <= maxAllowed) {
       addCard(selectedDeck, { ...card, count });
+      toast(
+        `${count} ${count > 1 ? "copies" : "copy"} of ${card.name} added`,
+        "success"
+      );
     } else
-      cardError(
-        `You already have ${cardCount} copies of this card in your deck, you can't have more than ${maxAllowed} duplicate ${
+      toast(
+        `You already have ${cardCount} ${
+          cardCount > 1 ? "copies" : "copy"
+        } of this card in your deck, you can't have more than ${maxAllowed} duplicate ${
           isBasicLand ? "lands" : "cards"
         } in a deck`,
         "error"
@@ -35,7 +41,7 @@ const Card = ({ card, cardError }) => {
     if (count < maxAllowed) {
       setCount(count + 1);
     } else {
-      cardError("You can't have more than 4 cards in a standard deck", "error");
+      toast("You can't have more than 4 cards in a standard deck", "error");
     }
   };
 

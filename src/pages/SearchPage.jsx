@@ -36,7 +36,7 @@ const SearchPage = () => {
     setLoading(false);
   };
 
-  const handleCardError = (message, toastStyle) => {
+  const handleToast = (message, toastStyle) => {
     setToast({ message, toastStyle });
   };
 
@@ -72,7 +72,7 @@ const SearchPage = () => {
         {cards && (
           <div className="grid grid-cols-4 gap-4 justify-between mx-24">
             {cards.map((card) => (
-              <Card key={card.id} card={card} cardError={handleCardError} />
+              <Card key={card.id} card={card} toast={handleToast} />
             ))}
           </div>
         )}
