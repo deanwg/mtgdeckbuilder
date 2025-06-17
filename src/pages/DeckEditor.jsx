@@ -4,6 +4,7 @@ import { useState } from "react";
 import CardTypeDisplay from "../components/CardTypeDisplay";
 import useDeckStore from "../store/deckStore";
 import CreateDeckButton from "../components/CreateDeckButton";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 const DeckEditor = () => {
   const [editing, setEditing] = useState(false);
@@ -11,6 +12,7 @@ const DeckEditor = () => {
   const decks = useDeckStore((state) => state.decks);
   const selectedDeck = useDeckStore((state) => state.selectedDeck);
   const deck = decks.find((deck) => deck.id === selectedDeck);
+  const [confirmationModal, setConfirmationModal] = useState(false);
 
   const handleClick = (e) => {
     setCard(e);
@@ -48,6 +50,22 @@ const DeckEditor = () => {
           <CardTypeDisplay type="Basic" onClick={handleClick} />
         </div>
         {editing && <QuantityEdit card={card} close={close} />}
+        <div className="flex fixed right-0 bottom-0">
+          <button
+            className="bg-red-600 m-2 p-2 rounded-lg"
+            onClick={() => setConfirmationModal(true)}
+          >
+            Delete Deck
+          </button>
+        </div>
+        {confirmationModal && (
+          <div className="fixed top-1/2 right-1/2 z-10">
+            <ConfirmationModal
+              setConfirmationModal={setConfirmationModal}
+              deckId={deck.id}
+            />
+          </div>
+        )}
       </div>
     </>
   );

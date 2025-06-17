@@ -21,9 +21,29 @@ const useDeckStore = create(
         })),
 
       removeDeck: (deckId) =>
-        set((state) => ({
-          decks: state.decks.filter((deck) => deck.id !== deckId),
-        })),
+        set((state) => {
+          const updatedDecks = state.decks.filter((deck) => deck.id !== deckId);
+          let newSelectedDeck = state.selectedDeck;
+
+          if (state.selectedDeck === deckId) {
+            if (updatedDecks.length > 0) {
+              newSelectedDeck = updatedDecks[0].id;
+            } else {
+              const fallback = {
+                id: `deck-${Date.now()}`,
+                name: "Default Deck",
+                cards: [],
+              };
+              updatedDecks.push(fallback);
+              newSelectedDeck = fallback.id;
+            }
+          }
+
+          return {
+            decks: updatedDecks,
+            selectedDeck: newSelectedDeck,
+          };
+        }),
 
       addCardToDeck: (deckId, card) =>
         set((state) => ({
