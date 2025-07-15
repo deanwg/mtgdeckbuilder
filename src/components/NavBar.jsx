@@ -44,7 +44,7 @@ const NavBar = () => {
         <select
           value={selectedDeck}
           onChange={(e) => setSelectedDeck(e.target.value)}
-          className="bg-slate-200 ml-3 p-1 rounded-md max-w-32 truncate"
+          className="bg-slate-200 ml-3 p-2 rounded-md max-w-32 truncate"
         >
           {decks.map((deck) => (
             <option key={deck.id} value={deck.id}>
