@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import useDeckStore from "../store/deckStore";
+import ColourFilter from "./ColourFilter";
 
 const NavBar = () => {
   const [query, setQuery] = useState("");
@@ -44,7 +45,7 @@ const NavBar = () => {
         <select
           value={selectedDeck}
           onChange={(e) => setSelectedDeck(e.target.value)}
-          className="bg-slate-200 ml-3 p-2 rounded-md max-w-32 truncate"
+          className="bg-slate-200 mx-3 p-2 rounded-md max-w-32 truncate"
         >
           {decks.map((deck) => (
             <option key={deck.id} value={deck.id}>
@@ -52,6 +53,7 @@ const NavBar = () => {
             </option>
           ))}
         </select>
+        <ColourFilter />
       </div>
       <div className="flex flex-row items-center">
         <Link to="/syntax">
