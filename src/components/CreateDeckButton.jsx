@@ -13,6 +13,12 @@ const CreateDeckButton = () => {
     setDeckName("");
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      createNewDeck();
+    }
+  };
+
   return (
     <div className="p-2 bg-slate-900 border border-x-slate-900 border-b-orange-950">
       <input
@@ -20,6 +26,7 @@ const CreateDeckButton = () => {
         value={deckName}
         onChange={(e) => setDeckName(e.target.value)}
         placeholder="Deck name"
+        onKeyDown={handleKeyDown}
         className="border rounded border-gray-500 text-center"
       />
       <button
