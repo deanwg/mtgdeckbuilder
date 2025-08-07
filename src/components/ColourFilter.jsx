@@ -8,12 +8,12 @@ import ColourlessIcon from "../icons/Colourless.png";
 
 const ColourFilter = () => {
   const icons = [
-    { src: BlackIcon, colour: "black" },
-    { src: BlueIcon, colour: "blue-900" },
-    { src: RedIcon, colour: "red-900" },
-    { src: GreenIcon, colour: "green-900" },
-    { src: WhiteIcon, colour: "yellow-400" },
-    { src: ColourlessIcon, colour: "gray-600" },
+    { src: BlackIcon, colour: "shadow-black" },
+    { src: BlueIcon, colour: "shadow-blue-900" },
+    { src: RedIcon, colour: "shadow-red-900" },
+    { src: GreenIcon, colour: "shadow-green-900" },
+    { src: WhiteIcon, colour: "shadow-yellow-400" },
+    { src: ColourlessIcon, colour: "shadow-gray-600" },
   ];
   const [selectedColours, setSelectedColours] = useState([]);
 
@@ -33,7 +33,7 @@ const ColourFilter = () => {
             onClick={() => handleClick(index)}
             className={`cursor-pointer rounded-3xl transition ${
               selectedColours.includes(index)
-                ? `shadow-lg shadow-${icon.colour} border border-gray-50`
+                ? `shadow-lg ${icon.colour} border border-gray-50`
                 : ``
             } hover:scale-105`}
           />
