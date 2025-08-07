@@ -15,6 +15,7 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ message: "", toastStyle: "info" });
   const [displayDeck, setDisplayDeck] = useState(false);
+  const [colourFilters, setColourFilters] = useState([]);
 
   useEffect(() => {
     if (initialQuery) {
@@ -54,7 +55,10 @@ const SearchPage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar
+        colourFilters={colourFilters}
+        setColourFilters={setColourFilters}
+      />
       <div
         className={`flex flex-col items-center py-5 overflow-auto bg-slate-100 transition-all duration-500 ${
           displayDeck ? "h-[50vh]" : "h-[93vh]"

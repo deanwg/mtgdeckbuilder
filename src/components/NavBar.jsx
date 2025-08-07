@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useDeckStore from "../store/deckStore";
 import ColourFilter from "./ColourFilter";
 
-const NavBar = () => {
+const NavBar = ({ colourFilters, setColourFilters }) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const selectedDeck = useDeckStore((state) => state.selectedDeck);
@@ -53,7 +53,10 @@ const NavBar = () => {
             </option>
           ))}
         </select>
-        <ColourFilter />
+        <ColourFilter
+          colourFilters={colourFilters}
+          setColourFilters={setColourFilters}
+        />
       </div>
       <div className="flex flex-row items-center">
         <Link to="/syntax">
