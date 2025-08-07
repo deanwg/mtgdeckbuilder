@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useDeckStore from "../store/deckStore";
 import ColourFilter from "./ColourFilter";
 
@@ -10,6 +10,8 @@ const NavBar = ({ colourFilters, setColourFilters }) => {
   const selectedDeck = useDeckStore((state) => state.selectedDeck);
   const setSelectedDeck = useDeckStore((state) => state.setSelectedDeck);
   const decks = useDeckStore((state) => state.decks);
+  const location = useLocation();
+  const isSearchPage = location.pathname === "/";
 
   const handleSearch = () => {
     navigate("/", { state: { query: query } });
@@ -53,10 +55,13 @@ const NavBar = ({ colourFilters, setColourFilters }) => {
             </option>
           ))}
         </select>
-        <ColourFilter
-          colourFilters={colourFilters}
-          setColourFilters={setColourFilters}
-        />
+        {/* Only show filters on search page */}
+        {isSearchPage && (
+          <ColourFilter
+            colourFilters={colourFilters}
+            setColourFilters={setColourFilters}
+          />
+        )}
       </div>
       <div className="flex flex-row items-center">
         <Link to="/syntax">

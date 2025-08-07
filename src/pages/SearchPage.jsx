@@ -24,12 +24,25 @@ const SearchPage = () => {
     }
   }, [initialQuery]);
 
+  const buildQuery = (searchTerm, colourFilters) => {
+    const scryFallColours = ["B", "U", "R", "G", "W"];
+    const selectedColours = colourFilters
+      .map((i) => scryFallColours[i])
+      .join("");
+
+    if (!selectedColours) return searchTerm;
+
+    return `${searchTerm} c:${selectedColours}`;
+  };
+
   const handleSearch = async (searchTerm = query) => {
     setError("");
     setLoading(true);
     setCards([]);
+
+    const fullQuery = buildQuery(searchTerm, colourFilters);
     try {
-      const result = await fetchCards(searchTerm);
+      const result = await fetchCards(fullQuery);
       setCards(result);
     } catch (err) {
       setError("No cards found");
