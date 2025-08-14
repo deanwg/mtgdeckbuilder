@@ -25,11 +25,9 @@ const SearchPage = () => {
   }, [initialQuery]);
 
   const buildQuery = (searchTerm, colourFilters) => {
-    const scryFallColours = ["B", "U", "R", "G", "W"];
-    const selectedColours = colourFilters
-      .map((i) => scryFallColours[i])
-      .join("");
-
+    const scryFallColours = ["B", "U", "R", "G", "W", "C"];
+    let selectedColours = colourFilters.map((i) => scryFallColours[i]).join("");
+    if (selectedColours.includes("C")) selectedColours = "C";
     if (!selectedColours) return searchTerm;
 
     return `${searchTerm} c:${selectedColours}`;
