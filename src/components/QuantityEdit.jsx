@@ -39,6 +39,7 @@ const QuantityEdit = ({ card, close }) => {
 
   const handleChangeQuantity = () => {
     updateQuantity(selectedDeck, { ...card, count });
+    close();
   };
 
   const handleRemove = () => {
