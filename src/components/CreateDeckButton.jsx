@@ -4,7 +4,7 @@ import useDeckStore from "../store/deckStore";
 const CreateDeckButton = () => {
   const addDeck = useDeckStore((state) => state.addDeck);
   const setSelectedDeck = useDeckStore((state) => state.setSelectedDeck);
-  const [deckName, setDeckName] = useState();
+  const [deckName, setDeckName] = useState("");
 
   const createNewDeck = () => {
     const newId = `deck-${Date.now()}`;
@@ -14,7 +14,8 @@ const CreateDeckButton = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !" ") {
+      e.preventDefault();
       createNewDeck();
     }
   };
@@ -32,6 +33,7 @@ const CreateDeckButton = () => {
       <button
         className="bg-orange-700 text-white rounded p-2 m-2"
         onClick={createNewDeck}
+        disabled={!deckName.trim()}
       >
         Create New Deck
       </button>
