@@ -7,7 +7,6 @@ const styles = {
 
 const Toast = ({ message, clearMessage, toastStyle }) => {
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     if (message) {
       setVisible(true);
@@ -23,7 +22,7 @@ const Toast = ({ message, clearMessage, toastStyle }) => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-50 ${style} px-4 py-2 rounded transition-opacity duration-1000 ${
+      className={`fixed top-10 left-1/2 -translate-x-1/2 pointer-events-none z-70 ${style} px-4 py-2 rounded transition-opacity duration-1000 ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >

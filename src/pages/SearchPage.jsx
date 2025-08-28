@@ -12,7 +12,6 @@ const SearchPage = () => {
   const initialQuery = location.state?.query || "";
   const [query, setQuery] = useState("");
   const [cards, setCards] = useState([]);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ message: "", toastStyle: "info" });
   const [displayDeck, setDisplayDeck] = useState(false);
@@ -39,7 +38,6 @@ const SearchPage = () => {
   };
 
   const handleSearch = async (searchTerm = query) => {
-    setError("");
     setLoading(true);
     setCards([]);
 
@@ -48,7 +46,7 @@ const SearchPage = () => {
       const result = await fetchCards(fullQuery);
       setCards(result);
     } catch (err) {
-      setError("No cards found");
+      setToast({ message: "No cards found", toastStyle: "error" });
     }
     setLoading(false);
   };
@@ -90,14 +88,15 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          {error && <p className="text-red-500">{error}</p>}
-          {toast.message && (
-            <Toast
-              message={toast.message}
-              clearMessage={clearToast}
-              toastStyle={toast.toastStyle}
-            />
-          )}
+          <div className="justify-center items-center">
+            {toast.message && (
+              <Toast
+                message={toast.message}
+                clearMessage={clearToast}
+                toastStyle={toast.toastStyle}
+              />
+            )}
+          </div>
           <div className="container mx-auto w-full px-8">
             {cards && (
               <div className="grid grid-cols-4 gap-4 justify-between">
