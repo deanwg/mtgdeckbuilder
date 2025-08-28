@@ -69,11 +69,6 @@ const NavBar = ({ colourFilters, setColourFilters }) => {
         )}
       </div>
       <div className="flex flex-row items-center">
-        <Link to="/syntax">
-          <button className="bg-orange-500 p-2 rounded-md">
-            Search Syntax
-          </button>
-        </Link>
         <Link to="/deckeditor">
           <button className="bg-orange-500 p-2 ml-3 rounded-md mr-2">
             Deck Editor
