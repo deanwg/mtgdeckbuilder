@@ -5,6 +5,7 @@ import fetchCards from "../api/mtgApi";
 import Toast from "../components/Toast";
 import { useLocation } from "react-router-dom";
 import DeckOverlay from "../components/DeckOverlay";
+import CardSkeleton from "../components/CardSkeletion";
 
 const SearchPage = () => {
   const location = useLocation();
@@ -80,7 +81,15 @@ const SearchPage = () => {
             displayDeck ? "pb-[260px]" : "pb-20"
           }`}
         >
-          {loading && <p>Loading...</p>}
+          <div className="container mx-auto w-full px-4">
+            {loading && (
+              <div className="grid grid-cols-4 gap-4 justify-between">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <CardSkeleton key={i} />
+                ))}
+              </div>
+            )}
+          </div>
           {error && <p className="text-red-500">{error}</p>}
           {toast.message && (
             <Toast
@@ -89,13 +98,15 @@ const SearchPage = () => {
               toastStyle={toast.toastStyle}
             />
           )}
-          {cards && (
-            <div className="grid grid-cols-4 gap-4 justify-between mx-24">
-              {cards.map((card) => (
-                <Card key={card.id} card={card} toast={handleToast} />
-              ))}
-            </div>
-          )}
+          <div className="container mx-auto w-full px-8">
+            {cards && (
+              <div className="grid grid-cols-4 gap-4 justify-between">
+                {cards.map((card) => (
+                  <Card key={card.id} card={card} toast={handleToast} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         <DeckOverlay isOpen={displayDeck} />
       </div>
