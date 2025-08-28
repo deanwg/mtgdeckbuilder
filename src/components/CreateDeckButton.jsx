@@ -52,7 +52,7 @@ const CreateDeckButton = () => {
           Create New Deck
         </button>
       </div>
-      <div>
+      <div className="p-2">
         <input
           type="text"
           value={editDeckName}
