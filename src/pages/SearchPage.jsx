@@ -74,29 +74,37 @@ const SearchPage = () => {
         colourFilters={colourFilters}
         setColourFilters={setColourFilters}
       />
-      <div
-        className={`flex flex-col items-center py-5 overflow-auto bg-slate-100 transition-all duration-500 ${
-          displayDeck ? "h-[50vh]" : "h-[93vh]"
-        }`}
-      >
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        {toast.message && (
-          <Toast
-            message={toast.message}
-            clearMessage={clearToast}
-            toastStyle={toast.toastStyle}
-          />
-        )}
-        {cards && (
-          <div className="grid grid-cols-4 gap-4 justify-between mx-24">
-            {cards.map((card) => (
-              <Card key={card.id} card={card} toast={handleToast} />
-            ))}
-          </div>
-        )}
+      <div className="flex flex-col min-h-[calc(100vh-56px)] bg-slate-100">
+        {/* Results area scrolls; add bottom padding so it doesn't hide behind the fixed footer */}
+        <div
+          className={`flex-1 overflow-auto py-5 transition-all duration-500 ${
+            displayDeck ? "pb-[260px]" : "pb-20"
+          }`}
+        >
+          {loading && <p>Loading...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {toast.message && (
+            <Toast
+              message={toast.message}
+              clearMessage={clearToast}
+              toastStyle={toast.toastStyle}
+            />
+          )}
+          {cards && (
+            <div className="grid grid-cols-4 gap-4 justify-between mx-24">
+              {cards.map((card) => (
+                <Card key={card.id} card={card} toast={handleToast} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Deck overlay sits above content but under the fixed footer */}
+        <DeckOverlay isOpen={displayDeck} />
       </div>
-      <div className="flex flex-row  bg-slate-400">
+
+      {/* Fixed footer with the toggle button — always visible */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-400 h-10 flex items-center">
         <div className="flex bg-orange-600 w-1/12 rounded-lg ml-5 my-2 justify-center">
           Deck Overlay
         </div>
@@ -104,12 +112,11 @@ const SearchPage = () => {
           className={`flex text-2xl absolute left-1/2 text-white hover:cursor-pointer ${
             displayDeck ? "rotate-180" : ""
           }`}
-          onClick={handleDisplayDeck}
+          onClick={() => setDisplayDeck((v) => !v)}
         >
           ^
         </div>
       </div>
-      <DeckOverlay isOpen={displayDeck} />
     </>
   );
 };
