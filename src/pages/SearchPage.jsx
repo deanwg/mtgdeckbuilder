@@ -24,6 +24,10 @@ const SearchPage = () => {
     }
   }, [initialQuery]);
 
+  useEffect(() => {
+    handleSearch(query);
+  }, [colourFilters]);
+
   const buildQuery = (searchTerm, colourFilters) => {
     const scryFallColours = ["B", "U", "R", "G", "W", "C"];
     let selectedColours = colourFilters.map((i) => scryFallColours[i]).join("");
