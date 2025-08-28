@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../Logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useDeckStore from "../store/deckStore";
@@ -21,6 +21,11 @@ const NavBar = ({ colourFilters, setColourFilters }) => {
       handleSearch();
     }
   };
+
+  useEffect(() => {
+    const queryState = location.state?.query;
+    setQuery(queryState);
+  }, [location.key]);
 
   return (
     <div className="flex flex-row justify-between bg-slate-300 w-full">
