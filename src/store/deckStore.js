@@ -20,6 +20,13 @@ const useDeckStore = create(
           decks: [...state.decks, newDeck],
         })),
 
+      renameDeck: (deckId, newDeckName) =>
+        set((state) => ({
+          decks: state.decks.map((deck) =>
+            deck.id === deckId ? { ...deck, name: newDeckName } : deck
+          ),
+        })),
+
       removeDeck: (deckId) =>
         set((state) => {
           const updatedDecks = state.decks.filter((deck) => deck.id !== deckId);

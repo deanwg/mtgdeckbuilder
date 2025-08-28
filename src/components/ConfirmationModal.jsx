@@ -22,7 +22,7 @@ const ConfirmationModal = ({ setConfirmationModal, deckId }) => {
       </div>
       <div className="flex flex-row justify-center">
         <button
-          className="bg-green-500 rounded-md p-1 m-1 mr-10"
+          className="bg-green-500 rounded-md p-2 m-1 mr-10"
           onClick={handleDeleteDeck}
         >
           Yes
