@@ -75,7 +75,6 @@ const SearchPage = () => {
         setColourFilters={setColourFilters}
       />
       <div className="flex flex-col min-h-[calc(100vh-56px)] bg-slate-100">
-        {/* Results area scrolls; add bottom padding so it doesn't hide behind the fixed footer */}
         <div
           className={`flex-1 overflow-auto py-5 transition-all duration-500 ${
             displayDeck ? "pb-[260px]" : "pb-20"
@@ -98,12 +97,8 @@ const SearchPage = () => {
             </div>
           )}
         </div>
-
-        {/* Deck overlay sits above content but under the fixed footer */}
         <DeckOverlay isOpen={displayDeck} />
       </div>
-
-      {/* Fixed footer with the toggle button — always visible */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-400 h-10 flex items-center">
         <div className="flex bg-orange-600 w-1/12 rounded-lg ml-5 my-2 justify-center">
           Deck Overlay
